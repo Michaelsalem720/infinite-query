@@ -6,12 +6,11 @@ import Post, { Posts } from "./components/Post";
 
 function App() {
   const { ref, inView } = useInView();
-
+  const _limit = 20;
   const fetchPosts = async ({ pageParam: _page = 1 }) => {
-    console.log("pageParam: ", _page);
     const res = await axios.get<Posts[]>(
-      "https://jsonplaceholder.typicode.com/comments",
-      { params: { _page, _limit: 20 } }
+      "https://jsonplaceholder.typicode.com/posts",
+      { params: { _page, _limit } }
     );
     return res.data;
   };
@@ -37,7 +36,7 @@ function App() {
             <Post
               key={post.id}
               post={post}
-              innerRef={posts.length - 16 === i ? ref : undefined}
+              innerRef={posts.length - _limit / 2 === i ? ref : undefined}
             />
           ))}
       </ol>

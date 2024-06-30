@@ -10,7 +10,7 @@ interface PostProps {
   innerRef?: (node?: Element | null | undefined) => void;
 }
 const Post: FC<PostProps> = ({ post, innerRef }) => {
-  return <li ref={innerRef}>{post.id}</li>;
+  return <li ref={innerRef}>{post.title}</li>;
 };
 
 export default Post;
